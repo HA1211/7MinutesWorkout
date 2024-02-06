@@ -1,11 +1,11 @@
 package com.nqh.a7minutesworkout
 
 class ExerciseModel(
-    var id:Int,
-    var name: String,
-    var image: Int,
-    var completed: Boolean,
-    var selected: Boolean
+    private var id:Int,
+    private var name: String,
+    private var image: Int,
+    private var completed: Boolean,
+    private var selected: Boolean
 ) {
     fun getId(): Int {
         return id

@@ -44,17 +44,20 @@ class ExerciseActivity : AppCompatActivity() {
     private fun setRestProgress(){
         binding.progressBar.progress = restProgress
 
-        restTimer = object: CountDownTimer(10000, 1000){
+        restTimer = object: CountDownTimer(2000, 1000){
             override fun onTick(p0: Long) {
                 restProgress++
-                binding.progressBar.progress = 10 - restProgress
-                binding.tvTimer.text = (10 - restProgress).toString()
+                binding.progressBar.progress = 2 - restProgress
+                binding.tvTimer.text = (2 - restProgress).toString()
 
             }
 
             override fun onFinish() {
                 binding.flProgressBar.visibility = View.INVISIBLE
-                binding.tvTitle.setText("Exercise Name")
+                binding.tvRestTimer.visibility = View.INVISIBLE
+
+                binding.flExercise.visibility = View.VISIBLE
+                binding.tvExercise.visibility = View.VISIBLE
 
                 currentExercisePosition++
                 exerciseTimer()
