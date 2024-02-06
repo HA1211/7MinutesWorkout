@@ -15,7 +15,10 @@ class ExerciseActivity : AppCompatActivity() {
     private lateinit var restTimer: CountDownTimer
     private var restProgress = 0
     private var restProgressExercise = 0
-    
+
+    private lateinit var exerciseList: ArrayList<ExerciseModel>
+    private var currentExercisePosition = -1
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +32,8 @@ class ExerciseActivity : AppCompatActivity() {
         if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
+
+        exerciseList = Constants.defaultExerciseList()
 
         binding.toolbarExercise.setNavigationOnClickListener {
             onBackPressed()
@@ -50,9 +55,10 @@ class ExerciseActivity : AppCompatActivity() {
             override fun onFinish() {
                 binding.flProgressBar.visibility = View.INVISIBLE
                 binding.tvTitle.setText("Exercise Name")
+
+                currentExercisePosition++
                 exerciseTimer()
             }
-
         }.start()
     }
 
