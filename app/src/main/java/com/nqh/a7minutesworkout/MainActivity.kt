@@ -3,6 +3,7 @@ package com.nqh.a7minutesworkout
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.widget.Toast
 import com.nqh.a7minutesworkout.databinding.ActivityMainBinding
 
@@ -20,4 +21,22 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
