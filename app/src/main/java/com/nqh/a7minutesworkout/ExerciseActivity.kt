@@ -27,7 +27,6 @@ class ExerciseActivity : AppCompatActivity() {
 
         setSupportActionBar(binding.toolbarExercise)
 
-        setRestProgress()
 
         if(supportActionBar != null){
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -39,26 +38,40 @@ class ExerciseActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+
+        setupRestView()
+
+
     }
+
+
+    private fun setupRestView(){
+
+        binding.flProgressBar.visibility = View.INVISIBLE
+        binding.tvRestTimer.visibility = View.INVISIBLE
+
+        binding.flExercise.visibility = View.VISIBLE
+        binding.tvExercise.visibility = View.VISIBLE
+        binding.ivExercise.visibility = View.VISIBLE
+
+
+
+        binding.ivExercise.setImageResource(exerciseList!![currentExercisePosition].getImage())
+
+    }
+
 
     private fun setRestProgress(){
         binding.progressBar.progress = restProgress
 
-        restTimer = object: CountDownTimer(2000, 1000){
+        restTimer = object: CountDownTimer(3000, 1000){
             override fun onTick(p0: Long) {
                 restProgress++
-                binding.progressBar.progress = 2 - restProgress
-                binding.tvTimer.text = (2 - restProgress).toString()
+                binding.progressBar.progress = 3 - restProgress
+                binding.tvTimer.text = (3 - restProgress).toString()
 
             }
-
             override fun onFinish() {
-                binding.flProgressBar.visibility = View.INVISIBLE
-                binding.tvRestTimer.visibility = View.INVISIBLE
-
-                binding.flExercise.visibility = View.VISIBLE
-                binding.tvExercise.visibility = View.VISIBLE
-
                 currentExercisePosition++
                 exerciseTimer()
             }
@@ -68,11 +81,11 @@ class ExerciseActivity : AppCompatActivity() {
     private fun exerciseTimer(){
         binding.progressExercise.progress = restProgressExercise
 
-        restTimer = object: CountDownTimer(30000, 1000){
+        restTimer = object: CountDownTimer(10000, 1000){
             override fun onTick(p0: Long) {
                 restProgressExercise++
-                binding.progressExercise.progress = 30 - restProgressExercise
-                binding.tvTimerExercise.text = (30 - restProgressExercise).toString()
+                binding.progressExercise.progress = 10 - restProgressExercise
+                binding.tvTimerExercise.text = (10 - restProgressExercise).toString()
             }
 
             override fun onFinish() {
