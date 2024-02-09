@@ -28,7 +28,7 @@ class ExerciseActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbarExercise)
 
 
-        if(supportActionBar != null){
+        if (supportActionBar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
 
@@ -45,7 +45,7 @@ class ExerciseActivity : AppCompatActivity() {
     }
 
 
-    private fun setupRestView(){
+    private fun setupRestView() {
 
         binding.flProgressBar.visibility = View.INVISIBLE
         binding.tvRestTimer.visibility = View.INVISIBLE
@@ -61,16 +61,17 @@ class ExerciseActivity : AppCompatActivity() {
     }
 
 
-    private fun setRestProgress(){
+    private fun setRestProgress() {
         binding.progressBar.progress = restProgress
 
-        restTimer = object: CountDownTimer(3000, 1000){
+        restTimer = object : CountDownTimer(3000, 1000) {
             override fun onTick(p0: Long) {
                 restProgress++
                 binding.progressBar.progress = 3 - restProgress
                 binding.tvTimer.text = (3 - restProgress).toString()
 
             }
+
             override fun onFinish() {
                 currentExercisePosition++
                 exerciseTimer()
@@ -78,10 +79,10 @@ class ExerciseActivity : AppCompatActivity() {
         }.start()
     }
 
-    private fun exerciseTimer(){
+    private fun exerciseTimer() {
         binding.progressExercise.progress = restProgressExercise
 
-        restTimer = object: CountDownTimer(10000, 1000){
+        restTimer = object : CountDownTimer(10000, 1000) {
             override fun onTick(p0: Long) {
                 restProgressExercise++
                 binding.progressExercise.progress = 10 - restProgressExercise
@@ -89,11 +90,10 @@ class ExerciseActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
-                Toast.makeText(this@ExerciseActivity,"Done", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@ExerciseActivity, "Done", Toast.LENGTH_LONG).show()
             }
         }.start()
     }
-
 
 
 }
