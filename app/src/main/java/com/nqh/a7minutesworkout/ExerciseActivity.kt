@@ -52,16 +52,14 @@ class ExerciseActivity : AppCompatActivity() {
 
         binding.flExercise.visibility = View.VISIBLE
         binding.tvExercise.visibility = View.VISIBLE
-        binding.ivExercise.visibility = View.VISIBLE
+        binding.ivImage.visibility = View.VISIBLE
 
-
-
-        binding.ivExercise.setImageResource(exerciseList!![currentExercisePosition].getImage())
+        setRestProgressBar()
 
     }
 
 
-    private fun setRestProgress() {
+    private fun setRestProgressBar() {
         binding.progressBar.progress = restProgress
 
         restTimer = object : CountDownTimer(3000, 1000) {
@@ -74,12 +72,29 @@ class ExerciseActivity : AppCompatActivity() {
 
             override fun onFinish() {
                 currentExercisePosition++
-                exerciseTimer()
+                setupExerciseView()
             }
         }.start()
     }
 
-    private fun exerciseTimer() {
+
+    private fun setupExerciseView() {
+
+        binding.flProgressBar.visibility = View.VISIBLE
+        binding.tvRestTimer.visibility = View.VISIBLE
+
+        binding.flExercise.visibility = View.INVISIBLE
+        binding.tvExercise.visibility = View.INVISIBLE
+        binding.ivImage.visibility = View.INVISIBLE
+
+        binding.tvExercise.text = exerciseList!![currentExercisePosition].getName()
+        binding.ivImage.setImageResource(exerciseList!![currentExercisePosition].getImage())
+
+        setExerciseProgressBar()
+    }
+
+
+    private fun setExerciseProgressBar() {
         binding.progressExercise.progress = restProgressExercise
 
         restTimer = object : CountDownTimer(10000, 1000) {

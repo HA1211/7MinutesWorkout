@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/ivExercise"
+        android:id="@+id/ivImage"
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:visibility="invisible"
@@ -38,7 +38,7 @@
         app:layout_constraintBottom_toTopOf="@id/flExercise"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivExercise" />
+        app:layout_constraintTop_toBottomOf="@id/ivImage" />
 
     <FrameLayout
         android:id="@+id/flExercise"
