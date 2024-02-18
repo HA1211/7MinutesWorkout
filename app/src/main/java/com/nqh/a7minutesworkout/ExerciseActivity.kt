@@ -13,6 +13,7 @@ class ExerciseActivity : AppCompatActivity() {
     lateinit var binding: ActivityExerciseBinding
 
     private lateinit var restTimer: CountDownTimer
+    private lateinit var exerciseTimer: CountDownTimer
     private var restProgress = 0
     private var restProgressExercise = 0
 
@@ -47,12 +48,12 @@ class ExerciseActivity : AppCompatActivity() {
 
     private fun setupRestView() {
 
-        binding.flProgressBar.visibility = View.INVISIBLE
-        binding.tvRestTimer.visibility = View.INVISIBLE
+        binding.flProgressBar.visibility = View.VISIBLE
+        binding.tvRestTimer.visibility = View.VISIBLE
 
-        binding.flExercise.visibility = View.VISIBLE
-        binding.tvExercise.visibility = View.VISIBLE
-        binding.ivImage.visibility = View.VISIBLE
+        binding.flExercise.visibility = View.INVISIBLE
+        binding.tvExercise.visibility = View.INVISIBLE
+        binding.ivImage.visibility = View.INVISIBLE
 
         setRestProgressBar()
 
@@ -80,12 +81,17 @@ class ExerciseActivity : AppCompatActivity() {
 
     private fun setupExerciseView() {
 
-        binding.flProgressBar.visibility = View.VISIBLE
-        binding.tvRestTimer.visibility = View.VISIBLE
+        binding.flProgressBar.visibility = View.INVISIBLE
+        binding.tvRestTimer.visibility = View.INVISIBLE
 
-        binding.flExercise.visibility = View.INVISIBLE
-        binding.tvExercise.visibility = View.INVISIBLE
-        binding.ivImage.visibility = View.INVISIBLE
+        binding.flExercise.visibility = View.VISIBLE
+        binding.tvExercise.visibility = View.VISIBLE
+        binding.ivImage.visibility = View.VISIBLE
+
+
+        if(exerciseTimer != null){
+
+        }
 
         binding.tvExercise.text = exerciseList!![currentExercisePosition].getName()
         binding.ivImage.setImageResource(exerciseList!![currentExercisePosition].getImage())
@@ -95,17 +101,21 @@ class ExerciseActivity : AppCompatActivity() {
 
 
     private fun setExerciseProgressBar() {
-        binding.progressExercise.progress = restProgressExercise
+        binding.progressBarExercise.progress = restProgressExercise
 
-        restTimer = object : CountDownTimer(10000, 1000) {
+        exerciseTimer = object : CountDownTimer(3000, 1000) {
             override fun onTick(p0: Long) {
                 restProgressExercise++
-                binding.progressExercise.progress = 10 - restProgressExercise
+                binding.progressBarExercise.progress = 10 - restProgressExercise
                 binding.tvTimerExercise.text = (10 - restProgressExercise).toString()
             }
 
             override fun onFinish() {
-                Toast.makeText(this@ExerciseActivity, "Done", Toast.LENGTH_LONG).show()
+                if(currentExercisePosition < exerciseList.size - 1){
+                    setupRestView()
+                }else{
+                    Toast.makeText(this@ExerciseActivity, "Congratulations", Toast.LENGTH_LONG).show()
+                }
             }
         }.start()
     }
