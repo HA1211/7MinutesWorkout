@@ -29,6 +29,8 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var exerciseList: ArrayList<ExerciseModel>
     private var currentExercisePosition = -1
 
+    private lateinit var exerciseAdapter: ExerciseAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,8 +60,15 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         setupRestView()
 
 
+        setupExerciseStatusRecyclerView()
+
     }
 
+
+    private fun setupExerciseStatusRecyclerView(){
+        exerciseAdapter = ExerciseAdapter(exerciseList)
+        binding.rvExerciseStatus.adapter = exerciseAdapter
+    }
 
     private fun setupRestView() {
 

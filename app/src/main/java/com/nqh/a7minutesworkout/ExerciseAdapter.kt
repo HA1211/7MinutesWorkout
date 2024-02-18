@@ -20,6 +20,8 @@ class ExerciseAdapter(val items: ArrayList<ExerciseModel>): RecyclerView.Adapter
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
+        //gán ID cho tvItem
         val model: ExerciseModel = items[position]
         holder.tvItem.text = model.getId().toString()
     }
