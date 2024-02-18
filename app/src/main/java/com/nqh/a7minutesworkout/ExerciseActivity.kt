@@ -166,7 +166,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
     }
 
-    
+
     //speak function
     private fun speakOut(text: String){
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
