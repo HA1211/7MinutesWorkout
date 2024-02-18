@@ -52,6 +52,8 @@ class ExerciseActivity : AppCompatActivity() {
 
         binding.flProgressBar.visibility = View.VISIBLE
         binding.tvRestTimer.visibility = View.VISIBLE
+        binding.tvTitle.visibility = View.VISIBLE
+        binding.tvExercise.visibility = View.VISIBLE
 
         binding.flExercise.visibility = View.INVISIBLE
         binding.tvExerciseName.visibility = View.INVISIBLE
@@ -63,12 +65,16 @@ class ExerciseActivity : AppCompatActivity() {
             restProgress = 0
         }
 
+        binding.tvExercise.text = exerciseList!![currentExercisePosition + 1].getName()
+
+
         setRestProgressBar()
 
     }
 
 
     private fun setRestProgressBar() {
+
         binding.progressBar.progress = restProgress
 
         restTimer = object : CountDownTimer(3000, 1000) {
@@ -91,6 +97,8 @@ class ExerciseActivity : AppCompatActivity() {
 
         binding.flProgressBar.visibility = View.INVISIBLE
         binding.tvRestTimer.visibility = View.INVISIBLE
+        binding.tvTitle.visibility = View.INVISIBLE
+        binding.tvExercise.visibility = View.INVISIBLE
 
         binding.flExercise.visibility = View.VISIBLE
         binding.tvExerciseName.visibility = View.VISIBLE
