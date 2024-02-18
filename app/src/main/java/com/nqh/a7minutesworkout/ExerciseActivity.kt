@@ -1,5 +1,6 @@
 package com.nqh.a7minutesworkout
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -87,8 +88,8 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             restProgress = 0
         }
 
-        binding.tvExercise.text = exerciseList!![currentExercisePosition + 1].getName()
 
+        binding.tvExercise.text = exerciseList[currentExercisePosition + 1].getName()
 
         setRestProgressBar()
 
@@ -109,6 +110,10 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
             override fun onFinish() {
                 currentExercisePosition++
+
+                exerciseList[currentExercisePosition].setSelected(true)
+                exerciseAdapter.notifyDataSetChanged()
+
                 setupExerciseView()
             }
         }.start()
@@ -128,7 +133,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
 
         //speak
-        speakOut(exerciseList!![currentExercisePosition].getName())
+        speakOut(exerciseList[currentExercisePosition].getName())
 
         if(exerciseTimer != null){
             exerciseTimer?.cancel()
@@ -153,6 +158,10 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             }
 
             override fun onFinish() {
+                exerciseList[currentExercisePosition].setSelected(false)
+                exerciseList[currentExercisePosition].setCompleted(true)
+                exerciseAdapter.notifyDataSetChanged()
+
                 if(currentExercisePosition < exerciseList.size - 1){
                     setupRestView()
                 }else{

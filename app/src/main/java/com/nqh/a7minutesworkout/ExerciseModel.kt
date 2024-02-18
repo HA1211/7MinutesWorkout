@@ -12,7 +12,7 @@ class ExerciseModel(
     }
 
     fun setId(id: Int) {
-        this.id
+        this.id = id
     }
 
     fun getName(): String {
@@ -20,7 +20,7 @@ class ExerciseModel(
     }
 
     fun setName(name: String) {
-        this.name
+        this.name = name
     }
 
     fun getImage(): Int {
@@ -28,7 +28,7 @@ class ExerciseModel(
     }
 
     fun setImage(image: Int) {
-        this.image
+        this.image = image
     }
 
     fun getCompleted(): Boolean {
@@ -36,7 +36,7 @@ class ExerciseModel(
     }
 
     fun setCompleted(completed: Boolean) {
-        this.completed
+        this.completed = completed
     }
 
     fun getSelected(): Boolean {
@@ -44,6 +44,6 @@ class ExerciseModel(
     }
 
     fun setSelected(selected: Boolean) {
-        this.selected
+        this.selected = selected
     }
 }
