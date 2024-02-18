@@ -10,14 +10,13 @@ import com.nqh.a7minutesworkout.databinding.ActivityMainBinding
 
 class ExerciseActivity : AppCompatActivity() {
 
-    lateinit var binding: ActivityExerciseBinding
+    private lateinit var binding: ActivityExerciseBinding
 
-    private lateinit var restTimer: CountDownTimer
+    private var restTimer: CountDownTimer? = null
     private var restProgress = 0
-    private var restProgressExercise = 0
 
 
-    private lateinit var exerciseTimer: CountDownTimer
+    private var exerciseTimer: CountDownTimer? = null
     private var exerciseProgress = 0
 
     private lateinit var exerciseList: ArrayList<ExerciseModel>
@@ -36,12 +35,12 @@ class ExerciseActivity : AppCompatActivity() {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
 
-        exerciseList = Constants.defaultExerciseList()
-
         binding.toolbarExercise.setNavigationOnClickListener {
             onBackPressed()
         }
 
+
+        exerciseList = Constants.defaultExerciseList()
 
         setupRestView()
 
@@ -55,8 +54,14 @@ class ExerciseActivity : AppCompatActivity() {
         binding.tvRestTimer.visibility = View.VISIBLE
 
         binding.flExercise.visibility = View.INVISIBLE
-        binding.tvExercise.visibility = View.INVISIBLE
+        binding.tvExerciseName.visibility = View.INVISIBLE
         binding.ivImage.visibility = View.INVISIBLE
+
+
+        if(restTimer != null){
+            restTimer?.cancel()
+            restProgress = 0
+        }
 
         setRestProgressBar()
 
@@ -88,17 +93,17 @@ class ExerciseActivity : AppCompatActivity() {
         binding.tvRestTimer.visibility = View.INVISIBLE
 
         binding.flExercise.visibility = View.VISIBLE
-        binding.tvExercise.visibility = View.VISIBLE
+        binding.tvExerciseName.visibility = View.VISIBLE
         binding.ivImage.visibility = View.VISIBLE
 
 
         if(exerciseTimer != null){
-            exerciseTimer.cancel()
+            exerciseTimer?.cancel()
             exerciseProgress = 0
         }
 
         binding.ivImage.setImageResource(exerciseList!![currentExercisePosition].getImage())
-        binding.tvExercise.text = exerciseList!![currentExercisePosition].getName()
+        binding.tvExerciseName.text = exerciseList!![currentExercisePosition].getName()
 
         setExerciseProgressBar()
     }
@@ -118,11 +123,10 @@ class ExerciseActivity : AppCompatActivity() {
                 if(currentExercisePosition < exerciseList.size - 1){
                     setupRestView()
                 }else{
-                    Toast.makeText(this@ExerciseActivity, "Congratulations", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@ExerciseActivity, "Congratulations !", Toast.LENGTH_LONG).show()
                 }
             }
         }.start()
     }
-
 
 }
