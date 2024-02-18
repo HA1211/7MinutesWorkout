@@ -13,9 +13,12 @@ class ExerciseActivity : AppCompatActivity() {
     lateinit var binding: ActivityExerciseBinding
 
     private lateinit var restTimer: CountDownTimer
-    private lateinit var exerciseTimer: CountDownTimer
     private var restProgress = 0
     private var restProgressExercise = 0
+
+
+    private lateinit var exerciseTimer: CountDownTimer
+    private var exerciseProgress = 0
 
     private lateinit var exerciseList: ArrayList<ExerciseModel>
     private var currentExercisePosition = -1
@@ -90,24 +93,25 @@ class ExerciseActivity : AppCompatActivity() {
 
 
         if(exerciseTimer != null){
-
+            exerciseTimer.cancel()
+            exerciseProgress = 0
         }
 
-        binding.tvExercise.text = exerciseList!![currentExercisePosition].getName()
         binding.ivImage.setImageResource(exerciseList!![currentExercisePosition].getImage())
+        binding.tvExercise.text = exerciseList!![currentExercisePosition].getName()
 
         setExerciseProgressBar()
     }
 
 
     private fun setExerciseProgressBar() {
-        binding.progressBarExercise.progress = restProgressExercise
+        binding.progressBarExercise.progress = exerciseProgress
 
         exerciseTimer = object : CountDownTimer(3000, 1000) {
             override fun onTick(p0: Long) {
-                restProgressExercise++
-                binding.progressBarExercise.progress = 10 - restProgressExercise
-                binding.tvTimerExercise.text = (10 - restProgressExercise).toString()
+                exerciseProgress++
+                binding.progressBarExercise.progress = 10 - exerciseProgress
+                binding.tvTimerExercise.text = (10 - exerciseProgress).toString()
             }
 
             override fun onFinish() {
