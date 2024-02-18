@@ -3,14 +3,21 @@ package com.nqh.a7minutesworkout
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.speech.tts.TextToSpeech
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import com.nqh.a7minutesworkout.databinding.ActivityExerciseBinding
 import com.nqh.a7minutesworkout.databinding.ActivityMainBinding
+import java.util.Locale
+import kotlin.math.log
 
-class ExerciseActivity : AppCompatActivity() {
+class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private lateinit var binding: ActivityExerciseBinding
+
+    //speak
+    private lateinit var tts: TextToSpeech
 
     private var restTimer: CountDownTimer? = null
     private var restProgress = 0
@@ -31,6 +38,9 @@ class ExerciseActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbarExercise)
 
 
+        //speak
+        tts = TextToSpeech(this, this)
+
         if (supportActionBar != null) {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
@@ -40,7 +50,10 @@ class ExerciseActivity : AppCompatActivity() {
         }
 
 
+
         exerciseList = Constants.defaultExerciseList()
+
+
 
         setupRestView()
 
@@ -105,6 +118,9 @@ class ExerciseActivity : AppCompatActivity() {
         binding.ivImage.visibility = View.VISIBLE
 
 
+        //speak
+        speakOut(exerciseList!![currentExercisePosition].getName())
+
         if(exerciseTimer != null){
             exerciseTimer?.cancel()
             exerciseProgress = 0
@@ -135,6 +151,25 @@ class ExerciseActivity : AppCompatActivity() {
                 }
             }
         }.start()
+    }
+
+    override fun onInit(status: Int) {
+        //check (chắc là không có cũng được)
+        if(status == TextToSpeech.SUCCESS){
+            val result = tts.setLanguage(Locale.ENGLISH)
+
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
+                Log.e("TTS","Ngôn ngữ này không hỗ trợ")
+            }
+        } else {
+            Log.e("TTS","Failed!")
+        }
+    }
+
+    
+    //speak function
+    private fun speakOut(text: String){
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
     }
 
 }
