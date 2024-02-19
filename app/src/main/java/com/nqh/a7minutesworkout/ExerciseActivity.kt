@@ -66,7 +66,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     }
 
 
-    private fun setupExerciseStatusRecyclerView(){
+    private fun setupExerciseStatusRecyclerView() {
         exerciseAdapter = ExerciseAdapter(exerciseList)
         binding.rvExerciseStatus.adapter = exerciseAdapter
     }
@@ -83,7 +83,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         binding.ivImage.visibility = View.INVISIBLE
 
 
-        if(restTimer != null){
+        if (restTimer != null) {
             restTimer?.cancel()
             restProgress = 0
         }
@@ -135,7 +135,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         //speak
         speakOut(exerciseList[currentExercisePosition].getName())
 
-        if(exerciseTimer != null){
+        if (exerciseTimer != null) {
             exerciseTimer?.cancel()
             exerciseProgress = 0
         }
@@ -162,10 +162,11 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 exerciseList[currentExercisePosition].setCompleted(true)
                 exerciseAdapter.notifyDataSetChanged()
 
-                if(currentExercisePosition < exerciseList.size - 1){
+                if (currentExercisePosition < exerciseList.size - 1) {
                     setupRestView()
-                }else{
-                    Toast.makeText(this@ExerciseActivity, "Congratulations !", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(this@ExerciseActivity, "Congratulations !", Toast.LENGTH_LONG)
+                        .show()
                 }
             }
         }.start()
@@ -173,20 +174,20 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     override fun onInit(status: Int) {
         //check (chắc là không có cũng được)
-        if(status == TextToSpeech.SUCCESS){
+        if (status == TextToSpeech.SUCCESS) {
             val result = tts.setLanguage(Locale.ENGLISH)
 
-            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED){
-                Log.e("TTS","Ngôn ngữ này không hỗ trợ")
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.e("TTS", "Ngôn ngữ này không hỗ trợ")
             }
         } else {
-            Log.e("TTS","Failed!")
+            Log.e("TTS", "Failed!")
         }
     }
 
 
     //speak function
-    private fun speakOut(text: String){
+    private fun speakOut(text: String) {
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
     }
 
