@@ -27,11 +27,11 @@ class BMIActivity : AppCompatActivity() {
         binding.btnCalculate.setOnClickListener {
             if(check()){
                 val weight: Float = binding.edtWeight.text.toString().toFloat()
-
                 val height: Float = binding.edtHeight.text.toString().toFloat() / 100
-
                 val equal = weight / (height * height)
+
                 result(equal)
+
             }else{
                 Toast.makeText(this@BMIActivity,"Please enter again", Toast.LENGTH_LONG).show()
             }
@@ -88,6 +88,7 @@ class BMIActivity : AppCompatActivity() {
     }
 
     private fun check(): Boolean{
+        if (binding.edtHeight.toString().isEmpty()){
         if (binding.edtHeight.toString().isEmpty()){
             return false
         }

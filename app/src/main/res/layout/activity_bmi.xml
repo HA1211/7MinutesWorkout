@@ -53,7 +53,7 @@
     </RadioGroup>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_layout_weight"
+        android:id="@+id/weight_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -73,12 +73,33 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/edt_layout_height"
+        android:id="@+id/weight_layout_us"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        app:boxStrokeColor="@color/green"
+        app:hintTextColor="@color/green"
+        android:layout_below="@id/radio_group"
+        android:visibility="invisible"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/edt_weight_us"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:hint="WEIGHT (in lb)"
+            android:textSize="16sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/height_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:boxStrokeColor="@color/green"
         app:hintTextColor="@color/green"
-        android:layout_below="@id/edt_layout_weight"
+        android:layout_below="@id/weight_layout"
         android:layout_margin="10dp"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
@@ -93,9 +114,59 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
+        android:id="@+id/linear_feet_inch"
+        android:visibility="invisible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/weight_layout"
+        android:orientation="horizontal">
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/feet_layout"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:boxStrokeColor="@color/green"
+            app:hintTextColor="@color/green">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edt_feet"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:hint="Feet"
+                android:textSize="16sp"
+                android:textColorHint="@color/green"
+                android:layout_weight="0.5"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/inch_layout"
+            android:layout_width="0dp"
+            android:layout_weight="0.5"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            app:boxStrokeColor="@color/green"
+            app:hintTextColor="@color/green">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edt_inch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textSize="16sp"
+                android:hint="Inch"
+                android:textColorHint="@color/green"
+                android:layout_weight="0.5"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/linear_BMIResult"
         android:padding="10dp"
-        android:layout_below="@id/edt_layout_height"
+        android:layout_below="@id/height_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
