@@ -1,6 +1,6 @@
 package com.nqh.a7minutesworkout
 
-import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,6 +11,7 @@ import android.view.View
 import android.widget.Toast
 import com.nqh.a7minutesworkout.databinding.ActivityExerciseBinding
 import com.nqh.a7minutesworkout.databinding.ActivityMainBinding
+import com.nqh.a7minutesworkout.databinding.DialogCustomBackConfirmationBinding
 import java.util.Locale
 import kotlin.math.log
 
@@ -53,7 +54,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }
 
         binding.toolbarExercise.setNavigationOnClickListener {
-            onBackPressed()
+            customDialogForBack()
         }
 
 
@@ -67,6 +68,26 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         setupExerciseStatusRecyclerView()
 
+    }
+
+    private fun customDialogForBack(){
+        val customDialog = Dialog(this)
+        val dialogBinding = DialogCustomBackConfirmationBinding.inflate(layoutInflater)
+        customDialog.setContentView(dialogBinding.root)
+        customDialog.setCanceledOnTouchOutside(false) //không thể hủy khi nhấn vùng bên ngoài button
+
+        dialogBinding.btnYes.setOnClickListener {
+            this@ExerciseActivity.finish()
+            customDialog.dismiss()
+        }
+        dialogBinding.btnNo.setOnClickListener {
+            customDialog.dismiss()
+        }
+        customDialog.show()
+    }
+
+    override fun onBackPressed() {
+        customDialogForBack()
     }
 
 
