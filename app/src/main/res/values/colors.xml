@@ -6,4 +6,5 @@
     <color name="green">#38C434</color>
 
     <color name="toolbar_color_control_normal">#000000</color>
+    <color name="colorAccent">#61D766</color>
 </resources>

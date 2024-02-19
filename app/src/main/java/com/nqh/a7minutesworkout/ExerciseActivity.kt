@@ -1,6 +1,7 @@
 package com.nqh.a7minutesworkout
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -31,6 +32,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var currentExercisePosition = -1
 
     private lateinit var exerciseAdapter: ExerciseAdapter
+
+    private var restTimerDuraction: Long = 3
+    private var exerciseTimerDuraction: Long = 3
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -100,7 +104,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         binding.progressBar.progress = restProgress
 
-        restTimer = object : CountDownTimer(3000, 1000) {
+        restTimer = object : CountDownTimer(restTimerDuraction * 1000, 1000) {
             override fun onTick(p0: Long) {
                 restProgress++
                 binding.progressBar.progress = 3 - restProgress
@@ -150,7 +154,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private fun setExerciseProgressBar() {
         binding.progressBarExercise.progress = exerciseProgress
 
-        exerciseTimer = object : CountDownTimer(3000, 1000) {
+        exerciseTimer = object : CountDownTimer(exerciseTimerDuraction * 1000, 1000) {
             override fun onTick(p0: Long) {
                 exerciseProgress++
                 binding.progressBarExercise.progress = 10 - exerciseProgress
@@ -165,8 +169,8 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
                 if (currentExercisePosition < exerciseList.size - 1) {
                     setupRestView()
                 } else {
-                    Toast.makeText(this@ExerciseActivity, "Congratulations !", Toast.LENGTH_LONG)
-                        .show()
+                    val intent = Intent(this@ExerciseActivity, FinishActivity::class.java)
+                    startActivity(intent)
                 }
             }
         }.start()
