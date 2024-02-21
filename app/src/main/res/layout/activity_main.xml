@@ -84,7 +84,9 @@
         <ImageView
             android:layout_width="50dp"
             android:layout_gravity="center"
-            android:layout_height="50dp"/>
+            android:layout_height="50dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_calendar_24"/>
     </FrameLayout>
 
     <TextView

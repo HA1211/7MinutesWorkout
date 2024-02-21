@@ -8,19 +8,26 @@ import androidx.room.RoomDatabase
 @Database(version = 1, entities = [HistoryDao::class])
 abstract class HistoryDatabase:RoomDatabase(){
 
-    abstract val historyDao:HistoryDao
+    abstract fun historyDao():HistoryDao
     companion object {
 
+        @Volatile
         private var INSTANCE: HistoryDatabase? = null
 
         fun getInstance(context: Context): HistoryDatabase {
 
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context, HistoryDatabase::class.java, "room_note_1"
-                ).fallbackToDestructiveMigration().build()
+            synchronized(this){
+                var instance = INSTANCE
 
-                INSTANCE = instance
+                if(instance == null){
+                    instance = Room.databaseBuilder(
+                        context.applicationContext,
+                        HistoryDatabase::class.java,
+                        "history_database"
+                    ).fallbackToDestructiveMigration().build()
+
+                    INSTANCE = instance
+                }
                 return instance
             }
         }

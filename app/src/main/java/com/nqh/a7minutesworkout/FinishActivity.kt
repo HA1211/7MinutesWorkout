@@ -1,8 +1,10 @@
 package com.nqh.a7minutesworkout
 
+import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.lifecycle.lifecycleScope
 import com.nqh.a7minutesworkout.databinding.ActivityFinishBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,7 +23,6 @@ class FinishActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolbarFinishActivity)
-
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         binding.toolbarFinishActivity.setNavigationOnClickListener {
@@ -31,10 +32,12 @@ class FinishActivity : AppCompatActivity() {
         binding.btnFinish.setOnClickListener {
             finish()
         }
-        addDateToDatabase()
+
+        val dao = (application as WorkOutApp).db.historyDao()
+        addDateToDatabase(dao)
     }
 
-    private fun addDateToDatabase() {
+    private fun addDateToDatabase(historyDao: HistoryDao) {
 
         val c = Calendar.getInstance()
         val dateTime = c.time
@@ -44,9 +47,8 @@ class FinishActivity : AppCompatActivity() {
         val date = sdf.format(dateTime)
         Log.e("Formatted Date : ", "" + date)
 
-
-        CoroutineScope(Dispatchers.IO).launch {
-            HistoryDatabase.getInstance(this@FinishActivity).historyDao.insert(HistoryEntity(date))
+        lifecycleScope.launch {
+            historyDao.insert(HistoryEntity(""))
         }
 
 
