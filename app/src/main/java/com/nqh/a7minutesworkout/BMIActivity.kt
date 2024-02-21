@@ -25,21 +25,21 @@ class BMIActivity : AppCompatActivity() {
         }
 
         binding.btnCalculate.setOnClickListener {
-            if(check()){
+            if (check()) {
                 val weight: Float = binding.edtWeight.text.toString().toFloat()
                 val height: Float = binding.edtHeight.text.toString().toFloat() / 100
                 val equal = weight / (height * height)
 
                 result(equal)
 
-            }else{
-                Toast.makeText(this@BMIActivity,"Please enter again", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this@BMIActivity, "Please enter again", Toast.LENGTH_LONG).show()
             }
         }
 
     }
 
-    private fun result(equal: Float){
+    private fun result(equal: Float) {
         val bmiType: String
         val bmiAdvive: String
 
@@ -78,7 +78,8 @@ class BMIActivity : AppCompatActivity() {
             bmiAdvive = "OMG! You are in a very dangerous condition! Act now!"
         }
 
-        val equalFormat = BigDecimal(equal.toDouble()).setScale(2, RoundingMode.HALF_EVEN).toString()
+        val equalFormat =
+            BigDecimal(equal.toDouble()).setScale(2, RoundingMode.HALF_EVEN).toString()
 
         binding.linearBMIResult.visibility = View.VISIBLE
         binding.tvBMIValue.text = equalFormat
@@ -87,15 +88,14 @@ class BMIActivity : AppCompatActivity() {
 
     }
 
-    private fun check(): Boolean{
-        if (binding.edtHeight.toString().isEmpty()){
-        if (binding.edtHeight.toString().isEmpty()){
-            return false
-        }
-        else if(binding.edtWeight.toString().isEmpty()){
-            return false
+    private fun check(): Boolean {
+        if (binding.edtHeight.toString().isEmpty()) {
+            if (binding.edtHeight.toString().isEmpty()) {
+                return false
+            } else if (binding.edtWeight.toString().isEmpty()) {
+                return false
+            }
         }
         return true
     }
-
 }
