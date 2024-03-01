@@ -2,18 +2,15 @@ package com.nqh.a7minutesworkout
 
 import android.app.Dialog
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.nqh.a7minutesworkout.databinding.ActivityExerciseBinding
-import com.nqh.a7minutesworkout.databinding.ActivityMainBinding
 import com.nqh.a7minutesworkout.databinding.DialogCustomBackConfirmationBinding
 import java.util.Locale
-import kotlin.math.log
 
 class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
@@ -35,7 +32,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var exerciseAdapter: ExerciseAdapter
 
     private var restTimerDuraction: Long = 3
-    private var exerciseTimerDuraction: Long = 3
+    private var exerciseTimerDuraction: Long = 10
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,20 +54,15 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             customDialogForBack()
         }
 
-
-
         exerciseList = Constants.defaultExerciseList()
 
-
-
         setupRestView()
-
 
         setupExerciseStatusRecyclerView()
 
     }
 
-    private fun customDialogForBack(){
+    private fun customDialogForBack() {
         val customDialog = Dialog(this)
         val dialogBinding = DialogCustomBackConfirmationBinding.inflate(layoutInflater)
         customDialog.setContentView(dialogBinding.root)
