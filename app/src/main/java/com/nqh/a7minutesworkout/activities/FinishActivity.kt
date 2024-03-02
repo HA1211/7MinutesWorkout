@@ -1,13 +1,13 @@
-package com.nqh.a7minutesworkout
+package com.nqh.a7minutesworkout.activities
 
-import android.app.Application
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.nqh.a7minutesworkout.Database.HistoryDao
+import com.nqh.a7minutesworkout.Database.HistoryEntity
+import com.nqh.a7minutesworkout.WorkOutApp
 import com.nqh.a7minutesworkout.databinding.ActivityFinishBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar

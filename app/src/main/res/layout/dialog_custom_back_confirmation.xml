@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--TODO(Step 1 : Designing the custom dialog for back confirmation.)-->
-<!--START-->
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -12,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Are you sure?"
+        android:text="@string/text_dialog_confirm"
         android:textColor="@android:color/black"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -24,7 +23,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:gravity="center"
-        android:text="This will stop your workout. You\'ve come this far, are you sure you want to quit?"
+        android:text="@string/text_dialog_advice"
         android:textColor="#212121"
         android:textSize="16sp" />
 
@@ -42,7 +41,7 @@
             android:layout_weight="1"
             android:backgroundTint="@color/colorAccent"
             android:gravity="center"
-            android:text="YES"
+            android:text="@string/btn_dialog_yes"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
 
@@ -54,9 +53,9 @@
             android:layout_weight="1"
             android:backgroundTint="@color/colorAccent"
             android:gravity="center"
-            android:text="NO"
+            android:text="@string/btn_dialog_no"
             android:textColor="#FFFFFF"
             android:textSize="16sp" />
     </LinearLayout>
+
 </LinearLayout>
-    <!--END-->

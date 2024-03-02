@@ -1,13 +1,14 @@
-package com.nqh.a7minutesworkout
+package com.nqh.a7minutesworkout.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.nqh.a7minutesworkout.adapter.HistoryAdapter
+import com.nqh.a7minutesworkout.Database.HistoryDao
+import com.nqh.a7minutesworkout.WorkOutApp
 import com.nqh.a7minutesworkout.databinding.ActivityHistoryBinding
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class HistoryActivity : AppCompatActivity() {

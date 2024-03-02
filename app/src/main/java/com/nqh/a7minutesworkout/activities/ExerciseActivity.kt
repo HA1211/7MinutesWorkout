@@ -1,5 +1,6 @@
-package com.nqh.a7minutesworkout
+package com.nqh.a7minutesworkout.activities
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
@@ -8,8 +9,11 @@ import android.speech.tts.TextToSpeech
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.nqh.a7minutesworkout.Constants
+import com.nqh.a7minutesworkout.adapter.ExerciseAdapter
 import com.nqh.a7minutesworkout.databinding.ActivityExerciseBinding
 import com.nqh.a7minutesworkout.databinding.DialogCustomBackConfirmationBinding
+import com.nqh.a7minutesworkout.models.ExerciseModel
 import java.util.Locale
 
 class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
@@ -31,8 +35,8 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private lateinit var exerciseAdapter: ExerciseAdapter
 
-    private var restTimerDuraction: Long = 3
-    private var exerciseTimerDuraction: Long = 10
+    private var breakTime: Long = 3
+    private var exerciseTimePractice: Long = 10
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -66,6 +70,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         val customDialog = Dialog(this)
         val dialogBinding = DialogCustomBackConfirmationBinding.inflate(layoutInflater)
         customDialog.setContentView(dialogBinding.root)
+
         customDialog.setCanceledOnTouchOutside(false) //không thể hủy khi nhấn vùng bên ngoài button
 
         dialogBinding.btnYes.setOnClickListener {
@@ -105,7 +110,6 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             restProgress = 0
         }
 
-
         binding.tvExercise.text = exerciseList[currentExercisePosition + 1].getName()
 
         setRestProgressBar()
@@ -114,10 +118,9 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
 
     private fun setRestProgressBar() {
-
         binding.progressBar.progress = restProgress
 
-        restTimer = object : CountDownTimer(restTimerDuraction * 1000, 1000) {
+        restTimer = object : CountDownTimer(breakTime * 1000, 1000) {
             override fun onTick(p0: Long) {
                 restProgress++
                 binding.progressBar.progress = 3 - restProgress
@@ -157,8 +160,8 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             exerciseProgress = 0
         }
 
-        binding.ivImage.setImageResource(exerciseList!![currentExercisePosition].getImage())
-        binding.tvExerciseName.text = exerciseList!![currentExercisePosition].getName()
+        binding.ivImage.setImageResource(exerciseList[currentExercisePosition].getImage())
+        binding.tvExerciseName.text = exerciseList[currentExercisePosition].getName()
 
         setExerciseProgressBar()
     }
@@ -167,7 +170,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private fun setExerciseProgressBar() {
         binding.progressBarExercise.progress = exerciseProgress
 
-        exerciseTimer = object : CountDownTimer(exerciseTimerDuraction * 1000, 1000) {
+        exerciseTimer = object : CountDownTimer(exerciseTimePractice * 1000, 1000) {
             override fun onTick(p0: Long) {
                 exerciseProgress++
                 binding.progressBarExercise.progress = 10 - exerciseProgress

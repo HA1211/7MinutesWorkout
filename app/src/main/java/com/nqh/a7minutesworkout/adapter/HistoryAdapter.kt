@@ -1,27 +1,29 @@
-package com.nqh.a7minutesworkout
+package com.nqh.a7minutesworkout.adapter
 
-import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import com.nqh.a7minutesworkout.databinding.ActivityHistoryBinding
 import com.nqh.a7minutesworkout.databinding.ItemHistoryBinding
 
-class HistoryAdapter(private val items: ArrayList<String>): RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
+class HistoryAdapter(private val items: ArrayList<String>) :
+    RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
 
-
-    class ViewHolder(binding: ItemHistoryBinding): RecyclerView.ViewHolder(binding.root){
+    class ViewHolder(binding: ItemHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
         val llHistoryItemMain = binding.llHistoryItemMain
         val tvItem = binding.tvItem
         val tvPosition = binding.tvPosition
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(ItemHistoryBinding.inflate(LayoutInflater.from(parent.context),parent, false))
+        return ViewHolder(
+            ItemHistoryBinding.inflate(
+                LayoutInflater.from(parent.context),
+                parent,
+                false
+            )
+        )
     }
 
     override fun getItemCount(): Int {
@@ -30,12 +32,12 @@ class HistoryAdapter(private val items: ArrayList<String>): RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val date: String = items.get(position)
-        holder.tvPosition.text = (position+1).toString()
+        holder.tvPosition.text = (position + 1).toString()
         holder.tvItem.text = date
 
-        if(position % 2 == 0){
+        if (position % 2 == 0) {
             holder.llHistoryItemMain.setBackgroundColor(Color.parseColor("#EBEBEB"))
-        }else{
+        } else {
             holder.llHistoryItemMain.setBackgroundColor(Color.parseColor("#FFFFFF"))
         }
     }

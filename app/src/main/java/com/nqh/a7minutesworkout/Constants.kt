@@ -1,5 +1,7 @@
 package com.nqh.a7minutesworkout
 
+import com.nqh.a7minutesworkout.models.ExerciseModel
+
 object Constants {
     fun defaultExerciseList(): ArrayList<ExerciseModel> {
         val exerciseList = ArrayList<ExerciseModel>()

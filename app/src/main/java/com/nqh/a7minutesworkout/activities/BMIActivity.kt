@@ -1,10 +1,9 @@
-package com.nqh.a7minutesworkout
+package com.nqh.a7minutesworkout.activities
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.core.util.toHalf
+import androidx.appcompat.app.AppCompatActivity
 import com.nqh.a7minutesworkout.databinding.ActivityBmiBinding
 import java.math.BigDecimal
 import java.math.RoundingMode
@@ -41,41 +40,35 @@ class BMIActivity : AppCompatActivity() {
 
     private fun result(equal: Float) {
         val bmiType: String
-        val bmiAdvive: String
+        val bmiAdvice: String
 
         if (equal.compareTo(15f) <= 0) {
             bmiType = "Thiếu cân trầm trọng"
-            bmiAdvive = "Ăn nhiều lên"
-        } else if (equal.compareTo(15f) > 0 && equal.compareTo(16f) <= 0
-        ) {
+            bmiAdvice = "Ăn nhiều lên"
+        } else if (equal.compareTo(15f) > 0 && equal.compareTo(16f) <= 0) {
             bmiType = "Thiếu cân"
-            bmiAdvive = "Ăn nhiều lên"
-        } else if (equal.compareTo(16f) > 0 && equal.compareTo(18.5f) <= 0
-        ) {
+            bmiAdvice = "Ăn nhiều lên"
+        } else if (equal.compareTo(16f) > 0 && equal.compareTo(18.5f) <= 0) {
             bmiType = "Dưới tiêu chuẩn"
-            bmiAdvive = "Ăn nhiều lên"
-        } else if (equal.compareTo(18.5f) > 0 && equal.compareTo(25f) <= 0
-        ) {
+            bmiAdvice = "Ăn nhiều lên"
+        } else if (equal.compareTo(18.5f) > 0 && equal.compareTo(25f) <= 0) {
             bmiType = "Bình thường"
-            bmiAdvive = "Congratulations! You are in a good shape!"
+            bmiAdvice = "Congratulations! You are in a good shape!"
         } else if (java.lang.Float.compare(equal, 25f) > 0 && java.lang.Float.compare(
-                equal,
-                30f
+                equal, 30f
             ) <= 0
         ) {
             bmiType = "Thừa cân"
-            bmiAdvive = "Bạn nên tập thể dục"
-        } else if (equal.compareTo(30f) > 0 && equal.compareTo(35f) <= 0
-        ) {
-            bmiType = "Obese Class I (Moderately obese)"
-            bmiAdvive = "Oops! You really need to take care of your yourself! Workout maybe!"
-        } else if (equal.compareTo(35f) > 0 && equal.compareTo(40f) <= 0
-        ) {
-            bmiType = "Obese Class II (Severely obese)"
-            bmiAdvive = "OMG! You are in a very dangerous condition! Act now!"
+            bmiAdvice = "Bạn nên tập thể dục"
+        } else if (equal.compareTo(30f) > 0 && equal.compareTo(35f) <= 0) {
+            bmiType = "Obese Class I"
+            bmiAdvice = "Oops! You really need to take care of your yourself! Workout maybe!"
+        } else if (equal.compareTo(35f) > 0 && equal.compareTo(40f) <= 0) {
+            bmiType = "Obese Class II"
+            bmiAdvice = "OMG! You are in a very dangerous condition! Act now!"
         } else {
-            bmiType = "Obese Class III (Very Severely obese)"
-            bmiAdvive = "OMG! You are in a very dangerous condition! Act now!"
+            bmiType = "Obese Class III"
+            bmiAdvice = "OMG! You are in a very dangerous condition! Act now!"
         }
 
         val equalFormat =
@@ -84,7 +77,7 @@ class BMIActivity : AppCompatActivity() {
         binding.linearBMIResult.visibility = View.VISIBLE
         binding.tvBMIValue.text = equalFormat
         binding.tvBMIType.text = bmiType
-        binding.tvBMIAdvice.text = bmiAdvive
+        binding.tvBMIAdvice.text = bmiAdvice
 
     }
 

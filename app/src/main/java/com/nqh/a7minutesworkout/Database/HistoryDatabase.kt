@@ -1,4 +1,4 @@
-package com.nqh.a7minutesworkout
+package com.nqh.a7minutesworkout.Database
 
 import android.content.Context
 import androidx.room.Database
@@ -6,9 +6,10 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(version = 1, entities = [HistoryDao::class])
-abstract class HistoryDatabase:RoomDatabase(){
+abstract class HistoryDatabase : RoomDatabase() {
 
-    abstract fun historyDao():HistoryDao
+    abstract fun historyDao(): HistoryDao
+
     companion object {
 
         @Volatile
@@ -16,10 +17,10 @@ abstract class HistoryDatabase:RoomDatabase(){
 
         fun getInstance(context: Context): HistoryDatabase {
 
-            synchronized(this){
+            synchronized(this) {
                 var instance = INSTANCE
 
-                if(instance == null){
+                if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         HistoryDatabase::class.java,

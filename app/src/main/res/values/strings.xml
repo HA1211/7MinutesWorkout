@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">7MinutesWorkout</string>
+    <string name="btn_start_text">START</string>
+    <string name="btn_calculator_text">CALCULATOR</string>
+    <string name="btn_history_text">HISTORY</string>
+    <string name="exercise_text">EXERCISE</string>
+    <string name="upcoming_exercise_text">UPCOMING EXERCISE:</string>
+    <string name="get_ready_text">GET READY FOR</string>
+    <string name="btn_dialog_yes">YES</string>
+    <string name="btn_dialog_no">NO</string>
+    <string name="text_dialog_confirm">Are you sure?</string>
+    <string name="text_dialog_advice">This will stop your workout. You\\\'ve come this far, are you sure you want to quit?</string>
 </resources>

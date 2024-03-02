@@ -1,4 +1,4 @@
-package com.nqh.a7minutesworkout
+package com.nqh.a7minutesworkout.models
 
 class ExerciseModel(
     private var id: Int,

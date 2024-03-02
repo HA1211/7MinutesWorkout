@@ -1,4 +1,4 @@
-package com.nqh.a7minutesworkout
+package com.nqh.a7minutesworkout.Database
 
 import androidx.room.Dao
 import androidx.room.Insert

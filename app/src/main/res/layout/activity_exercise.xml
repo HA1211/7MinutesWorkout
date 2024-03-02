@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ExerciseActivity">
+    tools:context=".activities.ExerciseActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbarExercise"
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
-        android:text="Exercise"
+        android:text="@string/exercise_text"
         android:textSize="20sp"
         android:textStyle="bold"
         android:visibility="invisible"
@@ -82,12 +82,13 @@
         </LinearLayout>
 
     </FrameLayout>
+
     <TextView
         android:id="@+id/tvRestTimer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="GET READY FOR"
+        android:text="@string/get_ready_text"
         android:textColor="@color/green"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -142,11 +143,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="UPCOMING EXERCISE:"
+        android:text="@string/upcoming_exercise_text"
         android:textSize="15sp"
-        app:layout_constraintTop_toBottomOf="@+id/flProgressBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/flProgressBar" />
 
     <TextView
         android:id="@+id/tvExercise"
@@ -155,24 +156,23 @@
         android:layout_marginBottom="10dp"
         android:textSize="15sp"
         android:textStyle="bold"
-        tools:text="Exercise"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+        tools:text="Exercise" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvExerciseStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="5dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@id/flExercise"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:listitem="@layout/item_exercise_status"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="5dp" />
-    <!--END-->
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/flExercise"
+        tools:listitem="@layout/item_exercise_status" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
