@@ -9,7 +9,6 @@ import com.nqh.a7minutesworkout.databinding.ItemHistoryBinding
 class HistoryAdapter(private val items: ArrayList<String>) :
     RecyclerView.Adapter<HistoryAdapter.ViewHolder>() {
 
-
     class ViewHolder(binding: ItemHistoryBinding) : RecyclerView.ViewHolder(binding.root) {
         val llHistoryItemMain = binding.llHistoryItemMain
         val tvItem = binding.tvItem

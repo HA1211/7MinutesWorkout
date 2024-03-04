@@ -9,8 +9,8 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface HistoryDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(historyDao: HistoryEntity)
+    fun insert(historyDao: HistoryEntity)
 
-    @Query("SELECT * from `history-table`")
-    fun fetchAllDate(): Flow<List<HistoryEntity>>
+    @Query("SELECT * from history_table")
+    fun getAllDate(): MutableList<HistoryEntity>
 }

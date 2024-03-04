@@ -7,14 +7,23 @@ import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nqh.a7minutesworkout.adapter.HistoryAdapter
 import com.nqh.a7minutesworkout.Database.HistoryDao
+import com.nqh.a7minutesworkout.Database.HistoryDatabase
+import com.nqh.a7minutesworkout.Database.HistoryEntity
 import com.nqh.a7minutesworkout.WorkOutApp
 import com.nqh.a7minutesworkout.databinding.ActivityHistoryBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class HistoryActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityHistoryBinding
 
+    var data: ArrayList<HistoryEntity>? = null
+
+    private val adapter by lazy {
+        HistoryAdapter(this@HistoryActivity, ArrayList(), this)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHistoryBinding.inflate(layoutInflater)
@@ -35,8 +44,8 @@ class HistoryActivity : AppCompatActivity() {
 
 
     private fun getAllCompletedDates(historyDao: HistoryDao){
-        lifecycleScope.launch {
-            historyDao.fetchAllDate().collect{allCompletedDatesList ->
+/*        lifecycleScope.launch {
+            historyDao.getAllDate().collect{allCompletedDatesList ->
                 if(allCompletedDatesList.isNotEmpty()){
                     binding.rvHistory.visibility = View.VISIBLE
                     binding.tvNoDataAvailable.visibility = View.INVISIBLE
@@ -57,6 +66,13 @@ class HistoryActivity : AppCompatActivity() {
                     binding.tvNoDataAvailable.visibility = View.VISIBLE
                 }
 
+            }
+        }*/
+        CoroutineScope(Dispatchers.IO).launch {
+            HistoryDatabase.getInstance(this@HistoryActivity).historyDao().getAllDate()
+                .also { data = it as ArrayList }
+            runOnUiThread {
+                adapter.setData(data as ArrayList<HistoryEntity>)
             }
         }
     }
