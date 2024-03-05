@@ -19,7 +19,7 @@ abstract class HistoryDatabase : RoomDatabase() {
 
             return INSTANCE ?: synchronized(this){
                 val instance = Room.databaseBuilder(
-                    context, HistoryDatabase::class.java, "room_note_1"
+                    context, HistoryDatabase::class.java, "room_history"
                 ).fallbackToDestructiveMigration().build()
                 INSTANCE= instance
                 return instance

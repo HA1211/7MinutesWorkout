@@ -30,10 +30,12 @@ class HistoryAdapter(private val items: ArrayList<String>) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+
         val date: String = items.get(position)
         holder.tvPosition.text = (position + 1).toString()
         holder.tvItem.text = date
 
+        //color
         if (position % 2 == 0) {
             holder.llHistoryItemMain.setBackgroundColor(Color.parseColor("#EBEBEB"))
         } else {

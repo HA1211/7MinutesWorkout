@@ -10,5 +10,5 @@ import kotlinx.android.parcel.Parcelize
 @Entity(tableName = "history_table")
 data class HistoryEntity(
     @PrimaryKey
-    val date: String = "1/1/2024"
+    val date: String
 ): Parcelable

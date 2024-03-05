@@ -2,6 +2,7 @@ package com.nqh.a7minutesworkout.activities
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.nqh.a7minutesworkout.Database.HistoryDao
@@ -48,10 +49,12 @@ class FinishActivity : AppCompatActivity() {
         Log.e("Formatted Date : ", "" + date)
 
         lifecycleScope.launch {
-            historyDao.insert(HistoryEntity(""))
+            historyDao.insert(HistoryEntity(date))
+            Log.e(
+                "Date: ",
+                "Added:..."
+            )
         }
-
-
     }
 
 }

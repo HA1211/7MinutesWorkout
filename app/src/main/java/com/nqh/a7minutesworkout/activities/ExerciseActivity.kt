@@ -1,6 +1,5 @@
 package com.nqh.a7minutesworkout.activities
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
@@ -30,13 +29,13 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private var exerciseTimer: CountDownTimer? = null
     private var exerciseProgress = 0
 
-    private lateinit var exerciseList: ArrayList<ExerciseModel>
+    private var exerciseList: ArrayList<ExerciseModel>? = null
     private var currentExercisePosition = -1
 
     private lateinit var exerciseAdapter: ExerciseAdapter
 
-    private var breakTime: Long = 3
-    private var exerciseTimePractice: Long = 10
+    private var breakTime: Long = 1
+    private var exerciseTimePractice: Long = 1
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -89,7 +88,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
 
     private fun setupExerciseStatusRecyclerView() {
-        exerciseAdapter = ExerciseAdapter(exerciseList)
+        exerciseAdapter = ExerciseAdapter(exerciseList!!)
         binding.rvExerciseStatus.adapter = exerciseAdapter
     }
 
@@ -110,7 +109,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             restProgress = 0
         }
 
-        binding.tvExercise.text = exerciseList[currentExercisePosition + 1].getName()
+        binding.tvExercise.text = exerciseList!![currentExercisePosition + 1].getName()
 
         setRestProgressBar()
 
@@ -123,15 +122,15 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         restTimer = object : CountDownTimer(breakTime * 1000, 1000) {
             override fun onTick(p0: Long) {
                 restProgress++
-                binding.progressBar.progress = 3 - restProgress
-                binding.tvTimer.text = (3 - restProgress).toString()
+                binding.progressBar.progress = breakTime.toInt() - restProgress
+                binding.tvTimer.text = (breakTime.toInt() - restProgress).toString()
 
             }
 
             override fun onFinish() {
                 currentExercisePosition++
 
-                exerciseList[currentExercisePosition].setSelected(true)
+                exerciseList!![currentExercisePosition].setSelected(true)
                 exerciseAdapter.notifyDataSetChanged()
 
                 setupExerciseView()
@@ -153,15 +152,15 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
 
         //speak
-        speakOut(exerciseList[currentExercisePosition].getName())
+        speakOut(exerciseList!![currentExercisePosition].getName())
 
         if (exerciseTimer != null) {
             exerciseTimer?.cancel()
             exerciseProgress = 0
         }
 
-        binding.ivImage.setImageResource(exerciseList[currentExercisePosition].getImage())
-        binding.tvExerciseName.text = exerciseList[currentExercisePosition].getName()
+        binding.ivImage.setImageResource(exerciseList!![currentExercisePosition].getImage())
+        binding.tvExerciseName.text = exerciseList!![currentExercisePosition].getName()
 
         setExerciseProgressBar()
     }
@@ -173,20 +172,19 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         exerciseTimer = object : CountDownTimer(exerciseTimePractice * 1000, 1000) {
             override fun onTick(p0: Long) {
                 exerciseProgress++
-                binding.progressBarExercise.progress = 10 - exerciseProgress
-                binding.tvTimerExercise.text = (10 - exerciseProgress).toString()
+                binding.progressBarExercise.progress = exerciseTimePractice.toInt() - exerciseProgress
+                binding.tvTimerExercise.text = (exerciseTimePractice.toInt() - exerciseProgress).toString()
             }
 
             override fun onFinish() {
-                exerciseList[currentExercisePosition].setSelected(false)
-                exerciseList[currentExercisePosition].setCompleted(true)
-                exerciseAdapter.notifyDataSetChanged()
-
-                if (currentExercisePosition < exerciseList.size - 1) {
+                if (currentExercisePosition < exerciseList!!.size - 1) {
+                    exerciseList!![currentExercisePosition].setSelected(false)
+                    exerciseList!![currentExercisePosition].setCompleted(true)
+                    exerciseAdapter?.notifyDataSetChanged()
                     setupRestView()
                 } else {
-                    val intent = Intent(this@ExerciseActivity, FinishActivity::class.java)
-                    startActivity(intent)
+                    finish()
+                    startActivity(Intent(this@ExerciseActivity, FinishActivity::class.java))
                 }
             }
         }.start()
@@ -204,7 +202,6 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             Log.e("TTS", "Failed!")
         }
     }
-
 
     //speak function
     private fun speakOut(text: String) {

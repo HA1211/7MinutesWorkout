@@ -53,22 +53,16 @@ class BMIActivity : AppCompatActivity() {
             bmiAdvice = "Ăn nhiều lên"
         } else if (equal.compareTo(18.5f) > 0 && equal.compareTo(25f) <= 0) {
             bmiType = "Bình thường"
-            bmiAdvice = "Congratulations! You are in a good shape!"
+            bmiAdvice = "Chúc mừng, bạn đang sở hữu 1 thân hình đẹp!"
         } else if (java.lang.Float.compare(equal, 25f) > 0 && java.lang.Float.compare(
                 equal, 30f
             ) <= 0
         ) {
             bmiType = "Thừa cân"
             bmiAdvice = "Bạn nên tập thể dục"
-        } else if (equal.compareTo(30f) > 0 && equal.compareTo(35f) <= 0) {
-            bmiType = "Obese Class I"
-            bmiAdvice = "Oops! You really need to take care of your yourself! Workout maybe!"
-        } else if (equal.compareTo(35f) > 0 && equal.compareTo(40f) <= 0) {
-            bmiType = "Obese Class II"
-            bmiAdvice = "OMG! You are in a very dangerous condition! Act now!"
         } else {
-            bmiType = "Obese Class III"
-            bmiAdvice = "OMG! You are in a very dangerous condition! Act now!"
+            bmiType = "Béo phì"
+            bmiAdvice = "CẢNH BÁO! Bạn đang ở trong tình trạng nguy hiểm"
         }
 
         val equalFormat =

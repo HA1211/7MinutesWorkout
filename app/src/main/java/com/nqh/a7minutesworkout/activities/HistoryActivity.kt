@@ -18,12 +18,7 @@ import kotlinx.coroutines.launch
 class HistoryActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityHistoryBinding
-
-    var data: ArrayList<HistoryEntity>? = null
-
-    private val adapter by lazy {
-        HistoryAdapter(this@HistoryActivity, ArrayList(), this)
-    }
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHistoryBinding.inflate(layoutInflater)
@@ -44,8 +39,8 @@ class HistoryActivity : AppCompatActivity() {
 
 
     private fun getAllCompletedDates(historyDao: HistoryDao){
-/*        lifecycleScope.launch {
-            historyDao.getAllDate().collect{allCompletedDatesList ->
+        lifecycleScope.launch {
+            historyDao.getAllDate().collect{ allCompletedDatesList ->
                 if(allCompletedDatesList.isNotEmpty()){
                     binding.rvHistory.visibility = View.VISIBLE
                     binding.tvNoDataAvailable.visibility = View.INVISIBLE
@@ -67,14 +62,8 @@ class HistoryActivity : AppCompatActivity() {
                 }
 
             }
-        }*/
-        CoroutineScope(Dispatchers.IO).launch {
-            HistoryDatabase.getInstance(this@HistoryActivity).historyDao().getAllDate()
-                .also { data = it as ArrayList }
-            runOnUiThread {
-                adapter.setData(data as ArrayList<HistoryEntity>)
-            }
         }
+        
     }
 
     override fun onDestroy() {
