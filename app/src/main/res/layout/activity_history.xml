@@ -25,12 +25,13 @@
         tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
-        app:layout_constraintTop_toBottomOf="@id/tvHistory"
         android:id="@+id/rvHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintTop_toBottomOf="@id/tvHistory"
         tools:visibility="visible" />
 
     <TextView

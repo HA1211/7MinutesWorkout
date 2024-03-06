@@ -2,7 +2,6 @@ package com.nqh.a7minutesworkout.activities
 
 import android.os.Bundle
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.nqh.a7minutesworkout.Database.HistoryDao
@@ -34,8 +33,8 @@ class FinishActivity : AppCompatActivity() {
             finish()
         }
 
-        val dao = (application as WorkOutApp).db.historyDao()
-        addDateToDatabase(dao)
+        /*val dao = (application as WorkOutApp).db.historyDao()
+        addDateToDatabase(dao)*/
     }
 
     private fun addDateToDatabase(historyDao: HistoryDao) {

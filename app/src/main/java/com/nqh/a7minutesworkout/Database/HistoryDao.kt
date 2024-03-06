@@ -8,8 +8,11 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface HistoryDao {
     @Insert
-    fun insert(historyEntity: HistoryEntity)
+    fun insert(historyEntity: HistoryEntity) : Long
+
+/*    @Query("SELECT * from history_table")
+    fun getAllDate(): Flow<List<HistoryEntity>>
 
     @Query("SELECT * from history_table")
-    fun getAllDate(): Flow<List<HistoryEntity>>
+    fun getAllDates(): Flow<List<HistoryEntity>>*/
 }
