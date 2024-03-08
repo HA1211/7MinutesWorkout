@@ -71,7 +71,8 @@ class HistoryActivity : AppCompatActivity() {
 
         CoroutineScope(Dispatchers.IO).launch {
             HistoryDatabase.getInstance(this@HistoryActivity).historyDao().insert(
-                HistoryEntity(DateUtils.getDate()
+                HistoryEntity(
+                    DateUtils.getDate()
                 )
             )
         }
