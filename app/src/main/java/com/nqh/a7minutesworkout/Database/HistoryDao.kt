@@ -10,9 +10,10 @@ interface HistoryDao {
     @Insert
     fun insert(historyEntity: HistoryEntity) : Long
 
-/*    @Query("SELECT * from history_table")
-    fun getAllDate(): Flow<List<HistoryEntity>>
 
     @Query("SELECT * from history_table")
+    fun getAllDate(): MutableList<HistoryEntity>
+
+    /*@Query("SELECT * from history_table")
     fun getAllDates(): Flow<List<HistoryEntity>>*/
 }

@@ -129,7 +129,6 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
             override fun onFinish() {
                 currentExercisePosition++
-
                 exerciseList!![currentExercisePosition].setSelected(true)
                 exerciseAdapter.notifyDataSetChanged()
 

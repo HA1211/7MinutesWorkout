@@ -70,11 +70,7 @@ class HistoryActivity : AppCompatActivity() {
         }*/
 
         CoroutineScope(Dispatchers.IO).launch {
-            HistoryDatabase.getInstance(this@HistoryActivity).historyDao().insert(
-                HistoryEntity(
-                    DateUtils.getDate()
-                )
-            )
+            HistoryDatabase.getInstance(this@HistoryActivity).historyDao().getAllDate()
         }
         binding.tvHistory.visibility = View.VISIBLE
         binding.rvHistory.visibility = View.VISIBLE

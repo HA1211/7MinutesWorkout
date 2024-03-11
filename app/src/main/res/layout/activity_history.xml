@@ -5,15 +5,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.HistoryActivity">
+
     <androidx.appcompat.widget.Toolbar
-        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/toolbar_history"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="#FFFFFF" />
+        android:background="#FFFFFF"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        app:layout_constraintTop_toBottomOf="@id/toolbar_history"
         android:id="@+id/tvHistory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,6 +22,7 @@
         android:text="EXERCISE COMPLETED"
         android:textSize="18sp"
         android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_history"
         tools:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -30,21 +31,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:visibility="gone"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/tvHistory"
+        app:spanCount="1"
+        tools:listitem="@layout/item_history"
         tools:visibility="visible" />
 
     <TextView
-        app:layout_constraintTop_toBottomOf="@id/toolbar_history"
-        app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/tvNoDataAvailable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="NO DATA AVAILABLE"
+        android:text="@string/no_data_available"
         android:textColor="#212121"
         android:textSize="18sp"
         android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_history"
         tools:visibility="visible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
