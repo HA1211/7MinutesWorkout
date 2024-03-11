@@ -50,4 +50,10 @@ class HistoryAdapter(
             holder.llHistoryItemMain.setBackgroundColor(Color.parseColor("#FFFFFF"))
         }
     }
+
+    fun setData(listData: ArrayList<HistoryEntity>) {
+        this.listDates.clear()
+        this.listDates.addAll(listData)
+        notifyDataSetChanged() //thông báo cho adapter dữ liệu đã thay đổi
+    }
 }

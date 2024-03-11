@@ -10,7 +10,6 @@ interface HistoryDao {
     @Insert
     fun insert(historyEntity: HistoryEntity) : Long
 
-
     @Query("SELECT * from history_table")
     fun getAllDate(): MutableList<HistoryEntity>
 

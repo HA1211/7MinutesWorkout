@@ -5,11 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.nqh.a7minutesworkout.Database.HistoryEntity
 import com.nqh.a7minutesworkout.R
 import com.nqh.a7minutesworkout.databinding.ItemExerciseStatusBinding
 import com.nqh.a7minutesworkout.models.ExerciseModel
 
-class ExerciseAdapter(private val items: ArrayList<ExerciseModel>) :
+class ExerciseAdapter(
+    private val items: ArrayList<ExerciseModel>) :
     RecyclerView.Adapter<ExerciseAdapter.ViewHolder>() {
     class ViewHolder(binding: ItemExerciseStatusBinding) : RecyclerView.ViewHolder(binding.root) {
         val tvItem = binding.tvItem

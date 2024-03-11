@@ -40,7 +40,7 @@ class FinishActivity : AppCompatActivity() {
             finish()
         }
 
-        val dao = (application as WorkOutApp).db.historyDao()
+        val dao = (application as WorkOutApp).db.historyDao
         addDateToDatabase(dao)
 
     }
@@ -63,10 +63,8 @@ class FinishActivity : AppCompatActivity() {
             )
         }*/
         CoroutineScope(Dispatchers.IO).launch { //IO là tên luồng
-            HistoryDatabase.getInstance(this@FinishActivity).historyDao().insert(
-                HistoryEntity(
-                    DateUtils.getDate()
-                )
+            HistoryDatabase.getInstance(this@FinishActivity).historyDao.insert(
+                HistoryEntity(getDate())
             )
         }
     }

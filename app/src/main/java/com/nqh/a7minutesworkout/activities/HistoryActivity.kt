@@ -19,6 +19,8 @@ class HistoryActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHistoryBinding
 
+    var data: ArrayList<HistoryEntity>? = null
+
     private val adapter by lazy {
         HistoryAdapter(this@HistoryActivity, ArrayList())
     }
@@ -39,7 +41,7 @@ class HistoryActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        val dao = (application as WorkOutApp).db.historyDao()
+        val dao = (application as WorkOutApp).db.historyDao
         getAllCompletedDates(dao)
     }
 
@@ -70,7 +72,11 @@ class HistoryActivity : AppCompatActivity() {
         }*/
 
         CoroutineScope(Dispatchers.IO).launch {
-            HistoryDatabase.getInstance(this@HistoryActivity).historyDao().getAllDate()
+            HistoryDatabase.getInstance(this@HistoryActivity).historyDao.getAllDate()
+                .also { data = it as ArrayList<HistoryEntity> }
+            runOnUiThread {
+                adapter.setData(data as ArrayList<HistoryEntity>)
+            }
         }
         binding.tvHistory.visibility = View.VISIBLE
         binding.rvHistory.visibility = View.VISIBLE
