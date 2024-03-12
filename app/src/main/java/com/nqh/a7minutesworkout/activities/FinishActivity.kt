@@ -46,22 +46,6 @@ class FinishActivity : AppCompatActivity() {
     }
 
     private fun addDateToDatabase(historyDao: HistoryDao) {
-
-        /*val c = Calendar.getInstance()
-        val dateTime = c.time
-        Log.e("Date : ", "" + dateTime)
-
-        val sdf = SimpleDateFormat("dd MMM yyyy HH:mm:ss", Locale.getDefault())
-        val date = sdf.format(dateTime)
-        Log.e("Formatted Date : ", "" + date)*/
-
-        /*lifecycleScope.launch {
-            historyDao.insert(HistoryEntity(getDate()))
-            Log.e(
-                "Date: ",
-                "Added:..."
-            )
-        }*/
         CoroutineScope(Dispatchers.IO).launch { //IO là tên luồng
             HistoryDatabase.getInstance(this@FinishActivity).historyDao.insert(
                 HistoryEntity(getDate())

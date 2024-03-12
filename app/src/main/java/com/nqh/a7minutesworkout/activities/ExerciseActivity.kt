@@ -195,7 +195,7 @@ class ExerciseActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
             val result = tts.setLanguage(Locale.ENGLISH)
 
             if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Log.e("TTS", "Ngôn ngữ này không hỗ trợ")
+                Log.e("TTS", "This language is no available")
             }
         } else {
             Log.e("TTS", "Failed!")

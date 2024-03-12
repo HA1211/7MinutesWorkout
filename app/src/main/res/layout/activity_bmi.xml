@@ -30,7 +30,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
-            android:hint="WEIGHT (in kg)"
+            android:hint="@string/weight_text"
             android:textSize="16sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -50,7 +50,7 @@
             android:id="@+id/edt_height"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="HEIGHT (in cm)"
+            android:hint="@string/height_text"
             android:inputType="numberDecimal"
             android:textSize="16sp"/>
 
@@ -73,7 +73,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="YOUR BMI"
+            android:text="@string/your_bmi_text"
             android:textAllCaps="true"
             android:textSize="16sp" />
 
@@ -94,7 +94,7 @@
             android:layout_marginTop="5dp"
             android:gravity="center"
             android:textSize="18sp"
-            tools:text="Normal" />
+            tools:text="@string/normal_text" />
 
         <TextView
             android:id="@+id/tvBMIAdvice"
@@ -103,7 +103,7 @@
             android:layout_marginTop="5dp"
             android:gravity="center"
             android:textSize="18sp"
-            tools:text="Normal" />
+            tools:text="@string/normal_text" />
     </LinearLayout>
 
     <Button
@@ -117,7 +117,7 @@
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:backgroundTint="@color/colorAccent"
-        android:text="CALCULATE"
+        android:text="@string/calculate_text"
         android:textColor="#FFFFFF"
         android:textSize="18sp" />
 

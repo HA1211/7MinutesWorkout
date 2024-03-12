@@ -11,4 +11,15 @@
     <string name="text_dialog_confirm">Are you sure?</string>
     <string name="text_dialog_advice">This will stop your workout. You\\\'ve come this far, are you sure you want to quit?</string>
     <string name="no_data_available">NO DATA AVAILABLE</string>
+    <string name="weight_text">WEIGHT (in kg)</string>
+    <string name="height_text">HEIGHT (in cm)</string>
+    <string name="your_bmi_text">YOUR BMI</string>
+    <string name="normal_text">Normal</string>
+    <string name="calculate_text">CALCULATE</string>
+    <string name="finish_text">FINISH</string>
+    <string name="congratulations_text">Congratulations!</string>
+    <string name="you_have_completed_the_workout_text">You have completed the workout!</string>
+    <string name="end_text">END</string>
+    <string name="exercise_completed_text">EXERCISE COMPLETED</string>
+    <string name="bmi_text">BMI</string>
 </resources>

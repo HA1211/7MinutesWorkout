@@ -12,7 +12,4 @@ interface HistoryDao {
 
     @Query("SELECT * from history_table")
     fun getAllDate(): MutableList<HistoryEntity>
-
-    /*@Query("SELECT * from history_table")
-    fun getAllDates(): Flow<List<HistoryEntity>>*/
 }
